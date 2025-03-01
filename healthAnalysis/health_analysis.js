@@ -3,6 +3,7 @@ const report = document.getElementById('report')
 const btnSearch = document.getElementById('btnSearch')
 const patients = []
 
+
 function addPatient() {
     const name = document.getElementById('name').value
     const gender =  document.querySelector('input[name="gender"]:checked')
@@ -62,5 +63,26 @@ function generateReport(){
             }
           }
         }
+
 addPatientButton.addEventListener("click", addPatient);
 
+
+function searchCondition() {
+    const input = document.getElementById('conditionInput').value.toLowerCase()
+    const resultDiv = document.getElementById('result')
+    resultDiv.innerHTML = ''
+
+    fetch('health_analysis.json')
+        .then(response => response.json())
+        .then(data => {
+            const condition = data.conditions.find(item => item.name.toLowerCase() === input)
+            if (condition) {
+                const symptoms = condition.symptoms.join(', ')
+                const prevention = condition.prevention.join(', ')
+                const treatment = condititon.treatment
+
+                resultDiv.innerHTML += 
+            }
+        })
+
+}
